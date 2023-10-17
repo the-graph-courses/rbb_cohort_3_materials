@@ -1,0 +1,108 @@
+---
+title: "Workshop Example report"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+author: "Your name here"
+date: "2023-10-17"
+---
+
+This document is a model example of what a report for this assignment can look like. You may use this document as a guide for how to write your report.
+
+Note that:
+
+-   The example uses the motorcycle accidents dataset from Colombia, but you should use the **India TB dataset**.
+-   **Code echo is turned off** in all code chunks so that the finished product hides the source code, showing only the output.
+
+------------------------------------------------------------------------
+
+```{r include = F}
+# Load packages
+# if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, here, patchwork, janitor, esquisse, flextable)
+```
+
+## Road Injuries of Motorcyclists in Medellín
+
+The dataset analysed in this report provides information about deaths caused by motorcycle accidents in Medellín, a Colombian city. The data is sourced from medical and police certificates and can he access [here](https://zenodo.org/record/4836304).
+
+```{r echo = F, message = F}
+# Data import
+col_accidents <- read_csv(here("data/teachers_example_data_motorcycle_accidents_colombia.csv"))
+```
+
+
+```{r echo = F, message = F}
+# Data cleaning
+# the age group column name (and a few others) have spaces in them. This makes them hard to work with.
+# To remove these from the column names, we can use the clean_names function from janitor
+col_accidents_clean <- clean_names(col_accidents)
+```
+
+## Age group distribution per sex group
+
+The two categorical variables I chose to look at are age group and sex.
+
+The plot below shows the age group distributions for each sex:
+
+```{r echo = F, fig.width=11}
+# esquisse::esquisser(col_accidents)
+
+# Plot for male victims.
+male <-
+  col_accidents_clean %>%
+  filter(gender %in% "male") %>%
+  ggplot() +
+  aes(x = age_group) +
+  geom_bar(fill = "#678BCB") +
+  labs(title = "Age group distribution of fatalities from motorcycle accidents",
+       subtitle = "(Men)") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 15L, face = "bold"),
+        plot.subtitle = element_text(size = 15L))
+  
+# Plot for female victims
+female <-
+  col_accidents_clean %>%
+  filter(gender %in% "female") %>%
+  ggplot() +
+  aes(x = age_group) +
+  geom_bar(fill = "#A4BBB6") +
+  labs(subtitle = "(Women)") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 15L,face = "bold"),
+        plot.subtitle = element_text(size = 15L))
+
+# combine plots with `+` or `/` function from the patchwork package. 
+# see teacher commentary below
+# or see https://patchwork.data-imaginist.com/ for details on using patchwork
+
+male + female
+```
+
+And the table below shows similar information:
+
+```{r include = F}
+# Create a summary data frame of two categorical variables with janitor::tabyl()
+freq_df <- tabyl(col_accidents_clean, age_group, gender)
+freq_df
+
+# NOTE THAT THE CHUNK OPTIONS HERE SAY "include = F". This ensures that the data frame is not printed in the knitted HTML.
+```
+
+For both sexes, the age group with the most deaths was the 20 to 24 age group. In women, there were `r freq_df[2,2]` deaths in this age group, and in men there were `r freq_df[2,3]` deaths.
+
+```{r echo = F}
+# Print your frequency table in a pretty format
+flex <- flextable(freq_df)
+
+flex_with_caption <- set_caption(flex, caption = "Age & gender distribution of fatalities from motorcycle accidents")
+flex_with_caption
+```
+
+## Areas of improvement
+
+-   The two bar charts have different numbers of bars. This is not ideal for comparisons.
+-   The age group labels are too horizontally compressed.
+-   I do not yet know how to change the variable names, so I left in the name `age_group` in the table and plot.

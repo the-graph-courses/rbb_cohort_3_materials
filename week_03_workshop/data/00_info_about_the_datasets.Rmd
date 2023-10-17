@@ -1,0 +1,21 @@
+---
+title: "Datasets for Workshop"
+author: "The GRAPH Courses team"
+date: '`r format(Sys.Date(), "%B %Y")`'
+output: pdf_document
+---
+
+
+# India Tuberculosis Treatments
+
+The India TB Pathways dataset is based on a study conducted in Vellore district, Tamil Nadu, India. It examines the pre-diagnostic costs and health-seeking behavior of 880 new adult pulmonary tuberculosis patients registered at Primary Health Centres (PHCs). The dataset reveals that a majority of patients initially visited private health facilities, resulting in substantial out-of-pocket (OOP) medical costs and delays prior to diagnosis and treatment initiation.
+
+Patient visits were classified into two broad categories: 1) Public and 2) Private (PVT). Public health care facilities were further categorized in to: A) Primary Health Centres (PHCs), B) Public Referral Hospitals (PRHs)—including secondary and tertiary referral centres, and C) TB Sanatorium (ST), a nodal centre for TB management, situated in Tambaram, Chennai, about 120 km away from the study area.
+
+Find out more about the dataset [**here**](https://tinyurl.com/india-tb-pathways-and-costs).
+
+# Teacher's example: Motorcycle Accidents in Colombia
+
+This dataset contains police records of deaths resulting from motorcycle-related road injuries in the city of Medellin between 2012 and 2015. It focuses exclusively on fatal incidents involving motorcyclists, both drivers and passengers. The relevant dataset at the linked site is called "Dataset 1.xlsx". In the second sheet of that xlsx file, you will find a data dictionary. The accompanying publication can be accessed [**here**](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0256758).
+
+Access related data [**here**](https://tinyurl.com/motorcycle-accidents-colombia).
