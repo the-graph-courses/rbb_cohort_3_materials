@@ -31,7 +31,7 @@ d.  At least one possible *area of improvement* mentioned.
 
 Knit your report into a valid HTML file. When you knit your file, please turn OFF code echo on all chunks, so that you have a clean output.
 
-To submit your work, please upload Rmd AND the knitted HTML to the submission page.
+To submit your work, please upload JUST YOUR Rmd to the submission page. But make sure the Rmd can be knit successfully before uploading.
 
 # Downloading and Opening the Assignment
 
