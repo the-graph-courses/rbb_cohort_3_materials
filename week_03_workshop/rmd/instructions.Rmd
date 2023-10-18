@@ -59,25 +59,27 @@ To submit your work, please upload JUST YOUR Rmd to the submission page. But mak
 
 2)  Create a new Rmd file (not R script!) in the "rmd" folder. You can name it as you like.
 
-3)   Make a new code chunk for package loading and load your needed packages. (Refer to the example report for clues about what packages you might need.) Make sure to use the correct chunk options!
+3)  Copy the YAML header from example report into your new file.
 
-4)  Under a new section heading, add a short description of the India TB dataset, similar to the one about Colombia motor accidents in the example report. Info about the dataset can be found in the "data" folder.
+4)  Make a new code chunk for package loading and load your needed packages. (Refer to the example report for clues about what packages you might need.) Make sure to use the correct chunk options!
 
-5)  Make a new code chunk in which you import the India TB dataset. Give the data frame a short, descriptive title. Remember to use the `here()` function when loading the CSV, otherwise, the data loading might not work.
+5)  Under a new section heading, add a short description of the India TB dataset, similar to the one about Colombia motor accidents in the example report. Info about the dataset can be found in the "data" folder.
 
-6)  Once your dataset is loaded, inspect the dataframe and choose two categorical variables for your analysis. Once you and your group have chosen your desired variables, you can proceed with creating the four requirements for the assignment: a ggplot2 plot, a table with flextable, one use of inline R code and one possible area of improvement.
+6)  Make a new code chunk in which you import the India TB dataset. Give the data frame a short, descriptive title. Remember to use the `here()` function when loading the CSV, otherwise, the data loading might not work.
 
-7)  Under a new section heading, describe the variables you are going to analyse. Explore data with esquisse. A good way to visualize two categorical variables is with a stacked bar chart. You can create on in esquisse by adding one variable to "X" or "Y" and the second variable to "FILL".
+7)  Once your dataset is loaded, inspect the dataframe and choose two categorical variables for your analysis. Once you and your group have chosen your desired variables, you can proceed with creating the four requirements for the assignment: a ggplot2 plot, a table with flextable, one use of inline R code and one possible area of improvement.
 
-8)  Another way to compare the distribution of two categorical variables is with a table. You can make a frequency table using the `tabyl()` function, however this creates a data frame that is not very presentable in a report.
+8)  Under a new section heading, describe the variables you are going to analyse. Explore data with esquisse. A good way to visualize two categorical variables is with a stacked bar chart. You can create on in esquisse by adding one variable to "X" or "Y" and the second variable to "FILL".
 
-9)  Create a better-looking table using {flextable} or {gt}. You should summarise the SAME two variables that you chose for plotting above. Remember to use the appropriate chunk options so only the nice table is printed (see example report for hints).
+9)  Another way to compare the distribution of two categorical variables is with a table. You can make a frequency table using the `tabyl()` function, however this creates a data frame that is not very presentable in a report.
 
-10) You can highlight specific numbers from the table using square bracket notation. Remember that the object you extract numbers from should be the data frame, not the flextable or gt table.
+10) Create a better-looking table using {flextable} or {gt}. You should summarise the SAME two variables that you chose for plotting above. Remember to use the appropriate chunk options so only the nice table is printed (see example report for hints).
 
-11) Create a section called "Areas of improvement". Here you can describe some areas of your report that you would like to make better. For example, you might want to customize your plots in a specific way, but you have not yet learned the tools to do so.
+11) You can highlight specific numbers from the table using square bracket notation. Remember that the object you extract numbers from should be the data frame, not the flextable or gt table.
 
-12) The final and most important part- Knitting your report! Before you knit, make sure you delete or comment out any instances of `esquisser()` or `View()`. This is because functions that open new windows will interrupt the knitting process. You may have to try several times before successfully knitting your report. Be patient and ask instructors for help as you go along. Remember to delete these
+12) Create a section called "Areas of improvement". Here you can describe some areas of your report that you would like to make better. For example, you might want to customize your plots in a specific way, but you have not yet learned the tools to do so.
+
+13) The final and most important part- Knitting your report! Before you knit, make sure you delete or comment out any instances of `esquisser()` or `View()`. This is because functions that open new windows will interrupt the knitting process. You may have to try several times before successfully knitting your report. Be patient and ask instructors for help as you go along. Remember to delete these
 
 ------------------------------------------------------------------------
 
