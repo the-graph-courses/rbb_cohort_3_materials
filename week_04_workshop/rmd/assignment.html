@@ -164,9 +164,9 @@ Extract the “knowledge-evaluation” question variables</a></li>
 Extract all male adults</a></li>
 <li><a href="#data-subset-4-extract-at-risk-individuals" id="toc-data-subset-4-extract-at-risk-individuals"><span class="toc-section-number">4.4</span> <strong>Data Subset 4:</strong>
 Extract at-risk individuals</a></li>
-<li><a href="#data-subset-5-extract-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies" id="toc-data-subset-5-extract-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies"><span class="toc-section-number">4.5</span> <strong>Data Subset 5:</strong>
-Extract respondents with “ideal” knowledge, attitudes and practices
-(KAPs) towards rabies</a></li>
+<li><a href="#data-subset-5-extract-rural-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies" id="toc-data-subset-5-extract-rural-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies"><span class="toc-section-number">4.5</span> <strong>Data Subset 5:</strong>
+Extract rural respondents with “ideal” knowledge, attitudes and
+practices (KAPs) towards rabies</a></li>
 </ul></li>
 <li><a href="#submission-upload-your-rmd-file-to-graph-courses-portal" id="toc-submission-upload-your-rmd-file-to-graph-courses-portal"><span class="toc-section-number">5</span> Submission: Upload your Rmd file to
 GRAPH Courses portal</a></li>
@@ -193,7 +193,8 @@ use</strong>. It is a hands-on approach to using the
 <code>select()</code> and <code>filter()</code> verbs, and exporting
 each subset with <code>write_csv()</code>.</p>
 <p>The assignment should be completed and submitted individually, but
-you are encouraged to brainstorm with partners.</p>
+you are encouraged to brainstorm with partners. The due date for this
+assignment is Friday, October 27th at 11:59 GMT.</p>
 </div>
 <div id="explore-the-assignment-repo" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Explore the assignment
@@ -273,8 +274,8 @@ subsets</h1>
 <p>In each “Data subset” section below, you should:</p>
 <ol style="list-style-type: decimal">
 <li><p>Determine whether to use the <code>filter()</code> or
-<code>select()</code> function, then apply that function to create the
-required extract of the dataset.</p></li>
+<code>select()</code> function (or both), then apply that function to
+create the required extract of the dataset.</p></li>
 <li><p>Export each data subset into an appropriately-named CSV file in
 the outputs folder.</p></li>
 </ol>
@@ -298,7 +299,11 @@ use project-relative paths.</p>
 <p>From looking through the metadata file, you will see that some
 variables correspond to “knowledge-evaluation” questions about rabies.
 Create and export a subset that includes just these variables.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Subset the data</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Export the data</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
 <p><em>Tip: There is a small typo in the metadata document. That
 variable <code>Signs</code> is mistakenly written down as
@@ -310,7 +315,11 @@ trying to select the variables above.</em></p>
 3:</strong> Extract all male adults</h2>
 <p>Create and export a data subset containing only records for males
 aged over 18.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Subset the data</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Export the data</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
 <p><em>Hint: this is a row-filtering question, so there is no need to
 select or drop columns.</em></p>
@@ -322,24 +331,35 @@ select or drop columns.</em></p>
 “at-risk” as people who meet any of the following criteria: a) have a
 pet at home, b) have no health facility in their area, OR c) consider
 that the rabies vaccine is not affordable for them.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Subset the data</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Export the data</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
 </div>
-<div id="data-subset-5-extract-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies" class="section level2" number="4.5">
+<div id="data-subset-5-extract-rural-respondents-with-ideal-knowledge-attitudes-and-practices-kaps-towards-rabies" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> <strong>Data Subset
-5:</strong> Extract respondents with “ideal” knowledge, attitudes and
-practices (KAPs) towards rabies</h2>
+5:</strong> Extract rural respondents with “ideal” knowledge, attitudes
+and practices (KAPs) towards rabies</h2>
 <p>We will define people with <em>ideal</em> KAPs as people who answered
 that they meet all of the below criteria:</p>
 <ul>
+<li>have a rural background</li>
 <li>know that dog bites transmit rabies;</li>
 <li>know the clinical signs for rabies; and</li>
 <li>would visit a doctor after being bitten by an animal</li>
 </ul>
 <p>Create and export a data subset that includes just these
 individuals.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Subset the data</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Export the data</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="st">&quot;WRITE_YOUR_CODE_HERE&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;WRITE_YOUR_CODE_HERE&quot;</code></pre>
+<p><em>Tip: You can use Ctrl+F to search text in the PDF and look for
+“knowledge-evaluation” questions.</em></p>
 </div>
 </div>
 <div id="submission-upload-your-rmd-file-to-graph-courses-portal" class="section level1" number="5">
@@ -445,53 +465,53 @@ Example</h2>
 <code>iris</code> dataset. The example creates subsets of data for each
 species of iris and exports them into separate sheets of an Excel
 workbook. It also creates a table describing each subset:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Load required packages</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, here, openxlsx)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co"># Create subsets of the iris data for each species </span></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>iris_setosa <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>iris_virginica <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>iris_versicolor <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;versicolor&quot;</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co"># Create a data frame that describes what each excel sheet will contain</span></span>
-<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co"># This description data frame will be stored in the first sheet of the Excel file</span></span>
-<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>description_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>  <span class="at">Sheet_Name =</span> <span class="fu">c</span>(<span class="st">&quot;Iris Setosa&quot;</span>, <span class="st">&quot;Iris Virginica&quot;</span>, <span class="st">&quot;Iris Versicolor&quot;</span>),</span>
-<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>  <span class="at">Description =</span> <span class="fu">c</span>(<span class="st">&quot;This sheet contains a data subset for Iris Setosa&quot;</span>, </span>
-<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>                  <span class="st">&quot;This sheet contains a data subset for Iris Virginica&quot;</span>, </span>
-<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>                  <span class="st">&quot;This sheet contains a data subset for Iris Versicolor&quot;</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>)</span>
-<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co"># Print description_df to the console for verification</span></span>
-<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>description_df</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, here, openxlsx)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># Create subsets of the iris data for each species </span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>iris_setosa <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>iris_virginica <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>iris_versicolor <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;versicolor&quot;</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="co"># Create a data frame that describes what each excel sheet will contain</span></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="co"># This description data frame will be stored in the first sheet of the Excel file</span></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>description_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>  <span class="at">Sheet_Name =</span> <span class="fu">c</span>(<span class="st">&quot;Iris Setosa&quot;</span>, <span class="st">&quot;Iris Virginica&quot;</span>, <span class="st">&quot;Iris Versicolor&quot;</span>),</span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>  <span class="at">Description =</span> <span class="fu">c</span>(<span class="st">&quot;This sheet contains a data subset for Iris Setosa&quot;</span>, </span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>                  <span class="st">&quot;This sheet contains a data subset for Iris Virginica&quot;</span>, </span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>                  <span class="st">&quot;This sheet contains a data subset for Iris Versicolor&quot;</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a>)</span>
+<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a><span class="co"># Print description_df to the console for verification</span></span>
+<span id="cb29-18"><a href="#cb29-18" tabindex="-1"></a>description_df</span></code></pre></div>
 <pre><code>##        Sheet_Name                                           Description
 ## 1     Iris Setosa     This sheet contains a data subset for Iris Setosa
 ## 2  Iris Virginica  This sheet contains a data subset for Iris Virginica
 ## 3 Iris Versicolor This sheet contains a data subset for Iris Versicolor</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Create a custom style for the file headers using &#39;createStyle()&#39; from the &#39;openxlsx&#39; package</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="co"># Style is: bold text, white font color, and blue fill</span></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>my_header_style <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="at">textDecoration =</span> <span class="st">&quot;BOLD&quot;</span>, <span class="at">fontColour =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="at">fgFill =</span> <span class="st">&quot;#4F80BD&quot;</span></span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>)</span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="co"># Create a list &#39;iris_subsets&#39; containing the table we will be storing in Excel </span></span>
-<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co"># These are the descrition data frame all three iris data subsets</span></span>
-<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co"># Each element in the list is given a name: &quot;Description&quot;, &quot;Iris Setosa&quot;, &quot;Iris Virginica&quot; and &quot;Iris Versicolor&quot;</span></span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>iris_subsets <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Description&quot;</span> <span class="ot">=</span> description_df, </span>
-<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>                     <span class="st">&quot;Iris Setosa&quot;</span> <span class="ot">=</span> iris_setosa, </span>
-<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>                     <span class="st">&quot;Iris Virginica&quot;</span> <span class="ot">=</span> iris_virginica, </span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>                     <span class="st">&quot;Iris Versicolor&quot;</span> <span class="ot">=</span> iris_versicolor)</span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co"># Write the &#39;iris_subsets&#39; list into an Excel workbook using &#39;write.xlsx&#39; function from &#39;openxlsx&#39; package</span></span>
-<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co"># Specify the file path using &#39;here&#39; function for portability</span></span>
-<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co"># &#39;headerStyle = my_header_style&#39; applies the previously defined custom style to the headers</span></span>
-<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="fu">write.xlsx</span>(</span>
-<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a>  <span class="at">x =</span> iris_subsets,</span>
-<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;outputs/iris_subsets_challenge_assignment_example.xlsx&quot;</span>),</span>
-<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a>  <span class="at">headerStyle =</span> my_header_style</span>
-<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Create a custom style for the file headers using &#39;createStyle()&#39; from the &#39;openxlsx&#39; package</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co"># Style is: bold text, white font color, and blue fill</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>my_header_style <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>  <span class="at">textDecoration =</span> <span class="st">&quot;BOLD&quot;</span>, <span class="at">fontColour =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="at">fgFill =</span> <span class="st">&quot;#4F80BD&quot;</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>)</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co"># Create a list &#39;iris_subsets&#39; containing the table we will be storing in Excel </span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co"># These are the descrition data frame all three iris data subsets</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="co"># Each element in the list is given a name: &quot;Description&quot;, &quot;Iris Setosa&quot;, &quot;Iris Virginica&quot; and &quot;Iris Versicolor&quot;</span></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>iris_subsets <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Description&quot;</span> <span class="ot">=</span> description_df, </span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>                     <span class="st">&quot;Iris Setosa&quot;</span> <span class="ot">=</span> iris_setosa, </span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>                     <span class="st">&quot;Iris Virginica&quot;</span> <span class="ot">=</span> iris_virginica, </span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>                     <span class="st">&quot;Iris Versicolor&quot;</span> <span class="ot">=</span> iris_versicolor)</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="co"># Write the &#39;iris_subsets&#39; list into an Excel workbook using &#39;write.xlsx&#39; function from &#39;openxlsx&#39; package</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a><span class="co"># Specify the file path using &#39;here&#39; function for portability</span></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a><span class="co"># &#39;headerStyle = my_header_style&#39; applies the previously defined custom style to the headers</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="fu">write.xlsx</span>(</span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>  <span class="at">x =</span> iris_subsets,</span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;outputs/iris_subsets_challenge_assignment_example.xlsx&quot;</span>),</span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>  <span class="at">headerStyle =</span> my_header_style</span>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="your-turn" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Your turn</h2>
@@ -499,7 +519,7 @@ workbook. It also creates a table describing each subset:</p>
 assignment to an Excel workbook. Make sure to write a short description
 of each subset in the first sheet of the workbook. At the end, you
 should have 6 sheets in your workbook. Good luck!</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="st">&quot;YOUR CODE FOR THE CHALLENGE QUESTION HERE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="st">&quot;YOUR CODE FOR THE CHALLENGE QUESTION HERE&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;YOUR CODE FOR THE CHALLENGE QUESTION HERE&quot;</code></pre>
 </div>
 </div>

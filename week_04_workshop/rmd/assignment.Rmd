@@ -17,7 +17,7 @@ Welcome!
 
 For this week's assignment, you will be carrying out a new task as a data analyst: **preparing data subsets for someone else to use**. It is a hands-on approach to using the `select()` and `filter()` verbs, and exporting each subset with `write_csv()`.
 
-The assignment should be completed and submitted individually, but you are encouraged to brainstorm with partners.
+The assignment should be completed and submitted individually, but you are encouraged to brainstorm with partners. The due date for this assignment is Friday, October 27th at 11:59 GMT.
 
 # Explore the assignment repo
 
@@ -75,7 +75,7 @@ Next, perform the following two cleaning tasks on the imported dataset, then sto
 
 In each "Data subset" section below, you should:
 
-1)   Determine whether to use the `filter()` or `select()` function, then apply that function to create the required extract of the dataset.
+1)   Determine whether to use the `filter()` or `select()` function (or both), then apply that function to create the required extract of the dataset.
 
 2)   Export each data subset into an appropriately-named CSV file in the outputs folder.
 
@@ -98,6 +98,10 @@ Remember to use the `here()` function to allow your Rmd to use project-relative 
 From looking through the metadata file, you will see that some variables correspond to "knowledge-evaluation" questions about rabies. Create and export a subset that includes just these variables.
 
 ```{r}
+# Subset the data
+"WRITE_YOUR_CODE_HERE"
+
+# Export the data
 "WRITE_YOUR_CODE_HERE"
 ```
 
@@ -108,6 +112,10 @@ From looking through the metadata file, you will see that some variables corresp
 Create and export a data subset containing only records for males aged over 18.
 
 ```{r}
+# Subset the data
+"WRITE_YOUR_CODE_HERE"
+
+# Export the data
 "WRITE_YOUR_CODE_HERE"
 ```
 
@@ -118,13 +126,18 @@ Create and export a data subset containing only records for males aged over 18.
 Create and export a subset with "at-risk" individuals. We define "at-risk" as people who meet any of the following criteria: a) have a pet at home, b) have no health facility in their area, OR c) consider that the rabies vaccine is not affordable for them.
 
 ```{r}
+# Subset the data
+"WRITE_YOUR_CODE_HERE"
+
+# Export the data
 "WRITE_YOUR_CODE_HERE"
 ```
 
-## **Data Subset 5:** Extract respondents with "ideal" knowledge, attitudes and practices (KAPs) towards rabies
+## **Data Subset 5:** Extract rural respondents with "ideal" knowledge, attitudes and practices (KAPs) towards rabies
 
 We will define people with *ideal* KAPs as people who answered that they meet all of the below criteria:
 
+-   have a rural background
 -   know that dog bites transmit rabies;
 -   know the clinical signs for rabies; and
 -   would visit a doctor after being bitten by an animal
@@ -132,8 +145,13 @@ We will define people with *ideal* KAPs as people who answered that they meet al
 Create and export a data subset that includes just these individuals.
 
 ```{r}
+# Subset the data
+"WRITE_YOUR_CODE_HERE"
+
+# Export the data
 "WRITE_YOUR_CODE_HERE"
 ```
+*Tip: You can use Ctrl+F to search text in the PDF and look for "knowledge-evaluation" questions.*
 
 # Submission: Upload your Rmd file to GRAPH Courses portal
 
