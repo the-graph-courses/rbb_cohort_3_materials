@@ -1,0 +1,151 @@
+---
+title: "Workshop 5: Creating and transforming variables"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+    number_sections: false
+author: "Author's name here"
+date: "2023-08-08"
+editor_options: 
+  chunk_output_type: inline
+  markdown: 
+    wrap: none
+---
+
+# Load packages and data
+
+To get started, **load in the needed packages**: {tidyverse}, {here}, and {esquisse}.
+
+```{r}
+pacman::p_load(tidyverse, here, esquisse)
+```
+
+Now, let's **read the dataset into your RStudio environment**. The data frame you import should have 142 rows and 9 columns. Remember to use the `here()` function to use project-relative paths.
+
+```{r}
+pa_raw <- read_csv(here("data/obesity.csv"))
+```
+
+Next, remove the first two variables of the data frame, as they are not relevant to our analysis today.
+
+```{r}
+pa_mini <- "WRITE_YOUR_CODE_HERE"
+```
+
+Now, view the new dataset and compare it to the variable definitions below.
+
+```{r}
+head(pa_mini)
+```
+
+Your data should have 7 variables now:
+
+-   `status`: adult (Adulte) or child (Enfant)
+-   `bmi`: body mass index
+-   `sedentary_ap_s_day`: sedentary behaviour (seconds/week)
+-   `light_ap_s_day`: light physical activity (seconds/week)
+-   `mvpa_s_day`: moderate to vigorous physical activity (seconds/week)
+-   `oms_recommendation`: whether or not WHO recommendations for physical activity are being met (OMS stands for Organisation mondiale de la Santé, which is the French name for WHO)
+
+# Clean data with {dplyr}
+
+## **Step 1**: Examine and clean dataset (Instructor demo)
+
+Before jumping into wrangling or plotting, let's think about the types of variables in our dataset. Take note of which variables should be numeric and which should be factors.
+
+Now let's check that R has classified these variables correctly. You can check the data classes assigned to each variable with `summary()` or `glimpse()`.
+
+```{r}
+summary(pa_mini)
+```
+
+Notice that some of your variables are of class **character**, but they should be **numeric** (e.g. `bmi`). This is because those variables have some words in them in addition to numbers. Can you spot those words when you view the dataset?
+
+Other variables of class character should be **factors**.
+
+We need to change these variables to correct type, because this will be essential for further manipulations and for plotting!
+
+We can use `mutate()` to convert your variables into the right type.
+
+**Hint**: There are 3 variables that should be factors, and 4 that should numeric.
+
+```{r}
+pa_clean <- "WRITE_YOUR_CODE_HERE"
+```
+
+**Note**: You may get a warning message about your numeric columns. This is telling you that some NAs were introduced to the data. This is not a problem in this case, so you can disregard the message.
+
+Now that you have converted them, use `summary()` or `glimpse()` again to check that the data classes are correct. Notice that in your new numeric columns, the text that used to be there as been replaced with `NA` (this is what the warning message was about).
+
+## **Step 2**: Convert the physical activity variables
+
+Currently, the variables of physical activity are in seconds per day. There are 3 types of physical activity variables: sedentary behavior (`sedentary_ap_s_day`), light physical activity (`light_ap_s_day`), and moderate to vigorous physical activity (`mvpa_s_day`). These variables are measured in seconds per day.
+
+However, the [WHO recommendations](https://apps.who.int/iris/bitstream/handle/10665/337001/9789240014886-eng.pdf) for physical activity are in minutes per week, so we want to align with these measures. To do this, complete the following manipulations:
+
+1.  Convert these numerical variables from **seconds/day** to **minutes/week**. (Hint: use `mutate()` to create new variables that are in minutes per week. As a kind reminder, 60 seconds = 1 minute and 7 days = 1 week.)
+
+2.  Remove the previous seconds per day variables. (Hint: you can use `ends_with()` within the `select()` function.)
+
+```{r}
+pa_clean1 <- "WRITE_YOUR_CODE_HERE"
+```
+
+Lastly, rename `oms_recommendation` to `who_recommendation` (OMS is French for WHO).
+
+```{r}
+pa_clean2 <- "WRITE_YOUR_CODE_HERE"
+```
+
+## **Step 3**: Combine physical activity variables
+
+Create a new column that adds light physical activity with moderate to vigorous physical activity. This should give us the total amount of activity in minutes per week.
+
+```{r}
+pa_clean3 <- "WRITE_YOUR_CODE_HERE"
+```
+
+## **Step 4**: Replace values in selected columns
+
+The `sex` variable uses the letter "M" for male and "F" for female. Replace values in that column to say "Male" and "Female" instead of "M" and "F".
+
+```{r}
+pa_clean4 <- "WRITE_YOUR_CODE_HERE"
+```
+
+Now, transform the `status` variable, to change "Aldulte" to "Adult" and "Enfant" to "Child".
+
+```{r}
+pa_clean5 <- "WRITE_YOUR_CODE_HERE"
+```
+
+# Visualize data with {esquisse}
+
+## **Plot 1**: Histogram
+
+Histograms are used to visualize the distribution of a single numeric (continuous) variable. Chose a variable from the dataset that you can plot a histogram with.
+
+Using esquisse, create your histogram.
+
+```{r}
+"ESQUISSE_CODE_HERE"
+```
+
+Note: Sometimes code generated by esquisse can have unwanted filtering. This is due to a bug in the package. Double check your code and remove any extra `filter()` operations.
+
+## **Plot 2**: Boxplot
+
+Boxplots are used to visualize the distribution of a numeric variable, split by the values of a discrete variable.
+
+1.  Use esquisse to create a boxplot to show the distribution of a numeric variable (the same one used for your histogram) and plot it against a categorical variable from the dataset.
+
+2.  Set fill color to match the values of your categorical variable.
+
+```{r}
+"PASTE_THE_ESQUISSE_CODE_HERE"
+```
+
+# Wrap up
+
+That's it for this assignment! We will choose 2-3 people to present your work during the workshop. If you would like to share your results with the class, please let an instructor know.

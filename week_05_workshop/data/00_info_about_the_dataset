@@ -1,0 +1,21 @@
+# General information
+
+The obesity.csv dataset is from a paper titled: Generational issues in linking family farming production, traditional food in diet, physical activity and obesity in Pacific Islands countries and territories: the case of the Melanesian population on Lifou Island.
+
+The aim of this interdisciplinary study was to understand the links between family farming (produced, exchanged, sold, and consumed food), diet (focused on produced, hunted, and caught food), physical activity (sedentary, light, and moderate-to-vigorous physical activity) and obesity in Melanesian Lifou Island families (parents and children). Forty families, including 142 adults and children, completed individual food frequency questionnaires, wore tri-axial accelerometers for seven continuous days, and had weight and height measured with a bio-impedance device.
+
+You can find out more about the dataset at this link:
+
+https://zenodo.org/record/5516813#.Y2EDyS8w1pR
+
+# Variable definitions
+
+- personal_id and household_id: identification numbers
+- sex: male or female
+- status: adult (Adulte) or child (Enfant)
+- bmi: body mass index
+- sedentary_ap_s_day: sedentary behaviour (seconds/week)
+- light_ap_s_day: light physical activity (seconds/week)
+- mvpa_s_day: moderate to vigorous physical activity (seconds/week)
+- oms_recommendation: whether or not WHO recommendations for physical activity are being met (OMS stands for Organisation mondiale de la Santé, which is the French name for WHO)
+
