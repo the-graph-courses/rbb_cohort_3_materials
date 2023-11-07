@@ -1,5 +1,5 @@
 ---
-title: "Workshop 7: Grouping, Summarizing, and Plotting"
+title: "Workshop 6: Grouping, Summarizing, and Plotting"
 output: 
   # pdf_document:
    prettydoc::html_pretty:
