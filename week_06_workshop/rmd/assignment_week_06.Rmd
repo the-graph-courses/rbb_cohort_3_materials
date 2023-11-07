@@ -23,7 +23,7 @@ To get started, **load in the needed packages**: {tidyverse}, {here}, {janitor},
 pacman::p_load(tidyverse, esquisse, here, janitor)
 ```
 
-Now, **read the dataset into R**. The data frame you import should have 880 rows and 22 columns. Remember to use the `here()` function to allow your Rmd to use project-relative paths.
+Now, **read the dataset into R**. The data frame you import should have 880 rows and 21 columns. Remember to use the `here()` function to allow your Rmd to use project-relative paths.
 
 ```{r}
 # Load dataset
@@ -105,7 +105,7 @@ Now we can create a table of the `age_group` variable to see if we met our goal 
 tb_clean2 %>% tabyl(age_group)
 ```
 
-**Checkpoint**: The if you classified the age groups correctly, you will see that each age group has 24-36% of the patients.
+**Checkpoint**: The if you classified the age groups correctly, you will see that each age group has 24-26% of the patients.
 
 ## Step 2: Summarize costs by age group and smoking status
 
