@@ -1,0 +1,132 @@
+---
+title: "Workshop 6: Grouping, Summarizing and Plotting"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+    number_sections: true
+author: "Author's name here"
+date: "2023-11-07"
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Load packages and data
+
+To get started, **load in the needed packages**: {tidyverse}, {here}, {janitor}, and {esquisse}.
+
+```{r}
+pacman::p_load(tidyverse, esquisse, here, janitor)
+```
+
+Now, **read the dataset into R**. The data frame you import should have 880 rows and 22 columns. Remember to use the `here()` function to allow your Rmd to use project-relative paths.
+
+```{r}
+# Load dataset
+"WRITE_YOUR_CODE_HERE"
+```
+
+The column names in this CSV have spaces in them, which is not R-friendly. Use `janitor::clean_names()` to give your variable names a clean and consistent format.
+
+```{r}
+# Clean variable names
+tb_renamed <- "WRITE_YOUR_CODE_HERE"
+
+```
+
+**Checkpoint**: The dataframe should contain 880 rows and 21 columns (see Environment tab). Column/variable names should be all lowercase with no spaces. You can run `names(tb_renamed)` to print the variable names.
+
+# Investigating healthcare costs
+
+This dataset is from a research paper titled "Diagnostic pathways and direct medical costs incurred by new adult pulmonary tuberculosis patients prior to anti-tuberculosis treatment – Tamil Nadu, India". The study collected data on out of pocket (OOP) expenditures incurred by TB patients. 
+
+## Step 1: Calculate a `total_cost` variable
+
+There were three visits for the participants and each had a cost (`first_visit_cost, second_visit_cost, third_visit_cost`). Add together these costs to create a `total_cost` variable.
+
+```{r}
+tb_clean1 <- "WRITE_YOUR_CODE_HERE"
+```
+
+## Step 2: Summarize costs by group
+
+Let's compare the cost of treatment at different health facilities using a summary table. Use `dplyr` verbs to group by `first_visit_location` and summarize the *mean* of fist visit cost.
+
+```{r}
+"WRITE_YOUR_CODE_HERE"
+```
+
+Next, reorder the rows of the summary table to go from highest to lowest mean cost. 
+```{r}
+"WRITE_YOUR_CODE_HERE"
+```
+
+Save this summary table as an object which you can use for plotting later on.
+
+
+# Encoding age groups
+
+## Step 1: Create an `age_group` variable
+
+The `age` variable records the age of each patient in years. For further manipulations, we want to classify the patients into 4 equally-sized age groups (i.e., the number of patients in each age group should be
+approximately the same).
+
+In order to determine what the age range for each age group should be, we can use the `quantile()` function.
+
+```{r}
+quantile(tb_clean1$age)
+```
+
+We will now choose cutoffs for each age group based on these values.
+
+**Create a new `age_group` variable with the following categories:**
+
+-   18-36
+
+-   37-47
+
+-   48-57
+
+-   58+
+
+```{r}
+tb_clean2 <- "WRITE_YOUR_CODE_HERE"
+
+```
+
+Now we can create a table of the `age_group` variable to see if we met our goal of having a similar number of patients in each age group:
+
+```{r}
+# Tabulate age groups
+tb_clean2 %>% tabyl(age_group)
+```
+
+**Checkpoint**: The if you classified the age groups correctly, you will see that each age group has 24-36% of the patients.
+
+## Step 2: Summarize costs by age group and smoking status
+
+Use "nested" grouping to group the data by two variables: `age_group` and `smoking`. Then filter to get the most expensive `total_cost` for  each nested group. 
+
+```{r}
+"WRITE_YOUR_CODE_HERE"
+
+```
+
+# Visualize data with {esquisse}
+
+Using `esquisser()` and the costs summary table you created earlier, create a bar plot of mean costs, by treatment location.
+
+```{r}
+"PASTE_THE_ESQUISSE_CODE_HERE"
+```
+
+# Wrap up
+
+That's it for this assignment! We will choose 2-3 people to present your work during the workshop. If you would like to share your results with the class, please let an instructor know.
+
+If you finish early and have extra time, you can explore the dataset further with esquisse, and create new plots to share with the class. Try customizing the colors and labels in your plots. 
+
