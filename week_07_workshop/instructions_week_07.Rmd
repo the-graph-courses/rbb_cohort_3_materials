@@ -1,0 +1,51 @@
+---
+title: "Workshop 7: Grouping and Pivoting"
+output: 
+  # pdf_document:
+   prettydoc::html_pretty:
+    theme: architect
+    toc: false
+    number_sections: false
+author: "GRAPH Courses"
+date: "2023-11-14"
+editor_options: 
+  chunk_output_type: console
+  markdown: 
+    wrap: none
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction
+
+Welcome!
+
+In this workshop, we will continue cleaning a dataset. It is a hands-on approach to using the {dplyr} functions you're already familiar with `select()`, `filter()`, `mutate()` `case_when()`, `group_by()` `summarize()`, `pivot_wider()`, `pivot_longer()`, ETC. These have been covered in the prework for the past few weeks.
+
+The assignment should be submitted individually, but you are encouraged to brainstorm with partners in a group.
+
+The due date for the assignment is Friday, November 17th at 23:59 PM UTC+1. Contact the instructors if you need an extension.
+
+# Steps for completing this assignment
+
+To get started, you should download and look through the assignment folder.
+
+1.  **First download the repo to your local computer.** Links to download the workshop code are on the assignment page of out R Basics and Beyond course.
+
+    *You should ideally work on your local computer, but if you would rather work on RStudio Cloud, see the assignment page for guidance on this.*
+
+2.  **Unzip/Extract the downloaded folder.**
+
+    *If you are on macOS, you can simply double-click on a file to unzip it.*
+
+    *If you are on Windows you need to select "extract all" and then work .*
+
+3.  **Open the workshop project in RStudio.** Make sure to open the RStudio Project file ("week_07_workshop.Rproj") from you unzipped folder. Double check that you are working within the project by looking at the name of your RStudio
+
+4.  **Open the assignment Rmd.** Navigate to the Files tab in RStudio and open the "rmd" folder. You will be working in the file called "assignment_week_07.Rmd". The instructions for your exercise are also available in this folder (this is a copy of the same instructions you are reading here).
+
+5.  **Complete the assignment.** Work through the steps in "assignment_week_07.Rmd". Replace every instance of `"WRITE_YOUR_CODE_HERE"` with your answers. Though you are allowed to work with group members, *it is important that all the code you submit has been typed yourself*.
+
+6.  **Submit your assignment.** Once you have finished the tasks above, you should save your answers and upload your assignment Rmd on the workshop webpage. You should upload just one Rmd file with your answers (do not upload the knitted HTML or a zipped folder). Make sure to include your name in the YAML header at the top of the script.

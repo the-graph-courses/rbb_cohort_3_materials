@@ -1,0 +1,163 @@
+---
+title: "Workshop 7: Grouping and Pivoting"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+    number_sections: true
+author: "Author's name here"
+date: "2023-11-14"
+editor_options: 
+  chunk_output_type: console
+  markdown: 
+    wrap: none
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Load packages and data
+
+To get started, **load in the needed packages**: {tidyverse}, {here}, and {esquisse}.
+
+```{r}
+#Load packages
+"WRITE_YOUR_CODE_HERE"
+```
+
+Now, **read the dataset into R**. The data frame you import should have 61 rows and 9 columns. Remember to use the `here()` function to allow your Rmd to use project-relative paths.
+
+```{r}
+#Load dataset
+diet_raw <- "WRITE_YOUR_CODE_HERE"
+```
+
+# 1 More Practice Using `dplyr` Verbs!
+
+NOTE: Keep in mind that the raw dataset is in a WIDE format while you complete Exercise 1.
+
+## Exercise 1: Dietary Intake of Households
+
+### 1.1 Adding new variables
+
+Measurements for daily energy intake (in kilocalories), dry food weight (in grams), water content in foods (in grams), and fat intake (in grams) were recorded during the first and second visits to households. Use `dplyr` verbs to calculate the total energy, water, fat, and dry content of foods consumed per household. You should have 4 new variables in the end.
+
+```{r}
+diet_clean1 <- diet_raw %>% "WRITE_YOUR_CODE_HERE"
+```
+
+**Checkpoint:** The original dataset had 9 columns. You should now have a total of 13 columns in your dataset! Note that the number of rows should remain unchanged.
+
+### 1.2 Explore data
+
+Determine which 2 households had the highest fat intake.
+
+HINT: Consider the `arrange()` function.
+
+```{r}
+diet_clean2 <- diet_clean1 %>% "WRITE_YOUR_CODE_HERE"
+```
+
+Household ID 1:
+
+Household ID 2:
+
+# 2 Pivoting the Dataset
+
+## Exercise 2: Wide to Long format
+
+Although basic data analysis tasks such as finding the mean, etc. are possible on wide format datasets, the codes are often longer and involve more manipulation.
+
+Long format datasets are optimal for a majority of data analysis tasks.
+
+Pivot the raw data frame into a long format using the `pivot_longer()` function. Assign appropriate names to describe what variables contain using the `names_sep` and `names_to` arguments.
+
+HINT: Review the [lesson notes](https://the-graph-courses.github.io/data_untangled_wp/lessons/ls08_advanced_pivoting.html#5_Wide_to_long) from prework to refresh your memory about these arguments.
+
+But first! Note that there is no unique separator in the variable names that we can give to `names_sep`. Use the `rename()` function of {dplyr} to add a unique separator between the type of value being recorded (e.g., "enerc_kcal") and the time period (e.g., "wk_1").
+
+SIDE NOTE: You CAN perform this pivot without renaming. We recommend the rename strategy as it is the easiest for your level of expertise.
+
+### 2.1 Advanced pivoting
+
+```{r eval = F}
+# Rename to add separator using the rename function
+diet_raw_renamed <- diet_raw %>% "WRITE_YOUR_CODE_HERE"
+```
+
+You can now perform a complex pivot:
+
+```{r}
+# Pivot into a long data frame with "week" as a separate column
+diet_long <- diet_raw_renamed %>% "WRITE_YOUR_CODE_HERE"
+```
+
+Your pivoted dataset should resemble this:
+
+| household_id | week | enerc_kcal | dry   | water  | fat   |
+|--------------|------|------------|-------|--------|-------|
+| 348          | w_1  | 2268.0     | 548.0 | 4219.0 | 78.4  |
+| 348          | w_2  | 1386.0     | 281.0 | 1997.0 | 67.7  |
+| 354          | w_1  | 2775.0     | 600.0 | 2376.0 | 115.0 |
+| 354          | w_2  | 1240.0     | 284.0 | 3145.0 | 45.3  |
+
+**Checkpoint:** After pivoting the data frame, notice that the number of observations and variables have changed! You should now have a 122 observations and 6 variables.
+
+With this new dataset, we now have one row for each household-week.
+
+Recommended: Use an appropriate {dplyr} function to remove the "w_" from the "week" column.
+
+```{r}
+diet_long_clean <- diet_long %>% "WRITE_YOUR_CODE_HERE"
+```
+
+### 2.2 Basic data analysis with a long format dataset
+
+Now, for each household, we would like to calculate the following:
+
+-   Average energy content of food
+-   Average dry content of food
+-   Average water content of food
+-   Average fat content of food
+
+Use the appropriate {dplyr} functions to obtain these summary statistics.
+
+```{r}
+summary_diet_long <- diet_long_clean %>% "WRITE_YOUR_CODE_HERE"
+```
+
+HINT. Your code should look like this:
+
+```{r eval = F}
+diet_long_clean %>% 
+  GROUPING_FUNCTION_HERE(household_id) %>% 
+  SUMMARY_FUNCTION_HERE(mean_energy = mean(enerc_kcal),
+                        ...)
+```
+
+### 2.3 Visualize data with {esquisse}
+
+Using `esquisse`, plot the mean energy content vs. mean fat content of food consumed for all households.
+
+```{r}
+"PASTE THE ESQUISSE CODE HERE"
+```
+
+# Challenge (optional)
+
+1.  Identify the 12 households that had a difference of over 1000 kilocalories between their week 1 and week 2 measurements for energy intake (`enerc_kcal`).
+
+    You can identify these households using either using the long or wide dataset. If you choose to use the long format dataset, you may need to use the `lag()` function from `{dplyr}`.
+
+2.  Make a graph comparing the energy intake of these 12 households for week 1 vs week 2 using `esquisse`. The y-axis should be `enerc_kcal`.
+
+    For such a plot, it will be easier to use the long format dataset.
+
+# Wrap up
+
+That's it for this assignment! We will choose 2-3 people to present your work during the workshop. If you would like to share your results with the class, please let an instructor know.
+
+# Submission: Upload Rmd file
+
+Don't forget to save your answers and upload your assignment Rmd on the workshop webpage. You should upload just one Rmd file with your answers (do not upload the knitted HTML or a zipped folder). Make sure to include your name in the YAML header at the top of the script.
