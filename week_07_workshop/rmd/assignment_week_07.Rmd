@@ -93,7 +93,7 @@ You can now perform a complex pivot:
 diet_long <- diet_raw_renamed %>% "WRITE_YOUR_CODE_HERE"
 ```
 
-Your pivoted dataset should resemble this:
+The structure of your pivoted dataset should resemble this:
 
 | household_id | week | enerc_kcal | dry   | water  | fat   |
 |--------------|------|------------|-------|--------|-------|
@@ -106,7 +106,7 @@ Your pivoted dataset should resemble this:
 
 With this new dataset, we now have one row for each household-week.
 
-Recommended: Use an appropriate {dplyr} function to remove the "w_" from the "week" column.
+Recommended: Use an appropriate {dplyr} function to remove the "w\_" from the "week" column.
 
 ```{r}
 diet_long_clean <- diet_long %>% "WRITE_YOUR_CODE_HERE"
@@ -127,7 +127,7 @@ Use the appropriate {dplyr} functions to obtain these summary statistics.
 summary_diet_long <- diet_long_clean %>% "WRITE_YOUR_CODE_HERE"
 ```
 
-HINT. Your code should look like this:
+**HINT**. Your code should look like this:
 
 ```{r eval = F}
 diet_long_clean %>% 
@@ -150,7 +150,9 @@ Using `esquisse`, plot the mean energy content vs. mean fat content of food cons
 
     You can identify these households using either using the long or wide dataset. If you choose to use the long format dataset, you may need to use the `lag()` function from `{dplyr}`.
 
-2.  Make a graph comparing the energy intake of these 12 households for week 1 vs week 2 using `esquisse`. The y-axis should be `enerc_kcal`.
+2.  Make a graph comparing the energy intake of these 12 households for week 1 vs week 2 using `esquisse`. For example, you could create a grouped bar chart like this:
+
+    ![](challenge_q2.jpg)
 
     For such a plot, it will be easier to use the long format dataset.
 
