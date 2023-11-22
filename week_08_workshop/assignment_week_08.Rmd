@@ -93,7 +93,7 @@ gapminder07 <- gapminder %>%
   "WRITE_YOUR_CODE_HERE" %>%
   # rename columns to make them easier to understand
   "WRITE_YOUR_CODE_HERE" %>% 
-  # reorder dataset by population size (this will be useful for plotting later)
+  # reorder dataset by descending population size (this will be useful for plotting later)
   "WRITE_YOUR_CODE_HERE"
 
 # View new data subset
