@@ -6,7 +6,7 @@ output:
     toc: true
     number_sections: true
 author: "Author's name here"
-date: "2023-08-28"
+date: "2023-11-28"
 editor_options: 
   chunk_output_type: inline
   markdown: 
@@ -56,20 +56,22 @@ Create a time series plot by first summarizing the data to count the number of a
 # Grop and summarize data to get the total number of admissions per date
 "WRITE YOUR CODE HERE"
 ```
+
 You should now have a summary data frame with 31 observations of 2 variables.
 
 Make a line plot using the summary table you created above.
+
 ```{r}
 # Plot dates on the x-axis and count on the y-axis
 "WRITE YOUR CODE HERE"
 ```
 
 Use the `labs()` function to add a title, subtitle, and appropriate x and y axis titles.
+
 ```{r}
 # Plot dates on the x-axis and count on the y-axis
 "WRITE YOUR CODE HERE"
 ```
-
 
 ## Customizing x-axis tick labels with `scale_x_date()`
 
@@ -83,6 +85,7 @@ ggplot(malidd, aes(x = admit_date)) +
   geom_line(stat = "count") +
   scale_x_date(date_breaks = "3 months")
 ```
+
 This gives us a label every 3 months, instead of every 2 months like we had before. However, the date labels are now in YYYY-MM-DD format. We can customize how the dates are formatted, using the `date_labels` argument:
 
 ```{r}
@@ -93,7 +96,7 @@ ggplot(malidd, aes(x = admit_date)) +
                date_labels = "%B")
 ```
 
-You may be wondering what `"%B"` means. When customizing date formats in {ggplot2}, we use specific codes to represent various components of a date. 
+You may be wondering what `"%B"` means. When customizing date formats in {ggplot2}, we use specific codes to represent various components of a date.
 
 Here are some common codes that you can give to `date_labels`:
 
@@ -105,7 +108,7 @@ Change the axis ticks labels on the previous line graph to display abbreviated m
 "WRITE YOUR CODE HERE"
 ```
 
-Further customize your plot to add color, labels, themes, and a layer of points. Adjust the size, shape, and transparency of points as you wish. 
+Further customize your plot to add color, labels, themes, and a layer of points. Adjust the size, shape, and transparency of points as you wish.
 
 ```{r}
 # Line graph with custom aesthetics
@@ -119,9 +122,6 @@ Bonus: You can also add a *themes* layer to your plot, using one the built-in `t
 "WRITE YOUR CODE HERE"
 ```
 
-
-
-
 # Comparing distributions with position adjustments
 
 Here's a histogram looking at the distribution of a numerical variable, `muac_cm`. MUAC stands for middle-upper arm circumference, and is measured in centimeters.
@@ -132,12 +132,14 @@ ggplot(data =  malidd ,
        mapping = aes(x = muac_cm)) +
   geom_histogram()
 ```
+
 Build on this code to draw histogram of MUAC with black outline, white fill, and bin width of 0.5.
+
 ```{r}
 "WRITE YOUR CODE HERE"
 ```
 
-Now say we want to split each bar of the histogram by categorical variables in `malidd`, like `sex`. 
+Now say we want to split each bar of the histogram by categorical variables in `malidd`, like `sex`.
 
 Plot a simple stacked histogram of MUAC and set the `fill` parameter to sex.
 
@@ -149,11 +151,10 @@ Plot a simple stacked histogram of MUAC and set the `fill` parameter to sex.
 
 After setting fill color, you can change the position adjustment within `geom_histogram()`.
 
-![](images/gg_min_build_positions.png)
-
 Possible values for the argument **position** in `geom_histogram()` are `“identity”`, `“stack”`, `“dodge”`. Default value is `“stack”`.
 
 Setting position to `“stack”` will give you the same plot as above.
+
 ```{r}
 # stack: stacked distributions of a categorical variable  
 ggplot(data =  malidd , 
@@ -167,14 +168,16 @@ ggplot(data =  malidd ,
 
 Use the `position` argument in `geom_histogram()` to create the following:
 
-- Histogram of height with overlapping bars
+-   Histogram of height with overlapping bars
+
 ```{r}
 # identity: draw overlapping distributions on the same plot
 
 "WRITE YOUR CODE HERE"
 ```
 
-- Histogram of weight with dodged bars
+-   Histogram of weight with dodged bars
+
 ```{r}
 # dodge: interweave distributions on the same plot
 
@@ -183,9 +186,10 @@ Use the `position` argument in `geom_histogram()` to create the following:
 
 ## Position adjustments for age groups
 
-Now we will apply position adjustments with a new categorical variable. 
+Now we will apply position adjustments with a new categorical variable.
 
 We'll first create a new categorical variable called **`age_group`**.
+
 ```{r}
 # Create new variable with 3 age groups
 malidd <- malidd %>% 
@@ -195,13 +199,12 @@ malidd <- malidd %>%
     age_months > 12 & age_months <= 48 ~ 'toddler'))
 ```
 
-Use {dplyr} functions to change `age_group` to factor, and relevel the factor to go from youngest age group to oldest age group. 
+Use {dplyr} functions to change `age_group` to factor, and relevel the factor to go from youngest age group to oldest age group.
 
 ```{r}
 # Mutate to factor and reorder levels
 "WRITE YOUR CODE HERE"
 ```
-
 
 Set `fill` to age group, and compare distributions between age groups using `position` arguments. You can use any numeric variables from the `malidd` data frame as the `x` aesthetic for your histogram.
 
@@ -218,7 +221,7 @@ Try to come up with 3 different histograms.
 ```
 
 ```{r}
-# Plot 1
+# Plot 3
 "WRITE YOUR CODE HERE"
 ```
 
@@ -229,5 +232,7 @@ Did you know that `scale_*()` functions are also used to customize the color pal
 Do some research on the {paletteer} package, and how it interfaces with `scale_*()` functions in {ggplot2}.
 
 Here are some palettes to explore:
-- https://rpubs.com/kenwosu/653735
-- https://emilhvitfeldt.github.io/paletteer/index.html
+
+-   <https://rpubs.com/kenwosu/653735>
+
+-   <https://emilhvitfeldt.github.io/paletteer/index.html>
