@@ -36,13 +36,13 @@ malidd %>% head()
 glimpse(malidd)
 ```
 
-Note that `read_csv()` (a dplyr function) has recognized the `admit_date` column from our CSV as a variable of class "date". If we used `read.csv()` (a base R function) would read it as class "character". This is one example of how tidyverse functions are more intuitive than base R.
+Note that `read_csv()` from {dplyr} has recognized the `admit_date` column from our CSV as a variable of class "date". This is crucial for plotting dates. If we used `read.csv()` (a base R function) would read it as class "character", and we would need to mutate it with `as.Date()`. This is one example of how {tidyverse} functions are more intuitive than base R, and why we use `read_csv()` and `write_csv()` instead of `read.csv()` and `write.csv()`.
 
 ```{r}
 summary(malidd)
 ```
 
-Notice that there lots of numeric variables that could be visualized with histograms. We also have a date variable that could be used for a time series line graph.
+Notice that there lots of **continuous** numeric variables that could be visualized with a histogram. We also have a **date** variable that will be used as the x-position aesthetic for a time series line graph.
 
 # Time series plot with `geom_line()`
 
@@ -50,14 +50,24 @@ Let's create a line graph to look at the number of admissions per day - the `adm
 
 ## Basic time series line graph with summarized data
 
-Create a time series plot by first summarizing the data to count the number of admissions for each day in `admit_date`, then plot the summary data using `geom_line()`.
+To create a time series plot of number of admissions per day, we can start by:
+
+1.  Summarizing the data to count the number of admissions for each day in `admit_date`, then
+
+2.  Plotting the summary data using `geom_line()`.
+
+**Step 1: Calculate x and y variables**
 
 ```{r}
-# Grop and summarize data to get the total number of admissions per date
-"WRITE YOUR CODE HERE"
+# Wrangle malidd to calculate the total number of admissions per date
+admits_per_day <- "WRITE YOUR CODE HERE"
+
+# HINT: You can use `group_by()` and `summarize()` OR `count()`.
 ```
 
-You should now have a summary data frame with 31 observations of 2 variables.
+You should now have a summary data frame called `admits_per_day` with 31 observations of 2 variables.
+
+**Step 2: Create time series plot**
 
 Make a line plot using the summary table you created above.
 
@@ -69,49 +79,79 @@ Make a line plot using the summary table you created above.
 Use the `labs()` function to add a title, subtitle, and appropriate x and y axis titles.
 
 ```{r}
-# Plot dates on the x-axis and count on the y-axis
+# Add labels
 "WRITE YOUR CODE HERE"
+```
+
+**Pro tip: `stat = "count"`** **for plotting in one step**
+
+An alternative to the 2-step process is using the `stat = "count"` argument in `geom_line()`. This feature of {ggplot2} allows us to avoid manual data summarization by automatically calculating number of admissions for each date from the original `malidd` data frame.
+
+```{r}
+# Example of how to create a line plot using stat = "count"
+ggplot(
+  # use original data frame
+  data = malidd,
+  # remove y-axis aes which is usually required for geom_line()
+  mapping = aes(x = admit_date)) +
+  # add stat argument to geom_*() function
+  geom_line(stat = "count")
+```
+
+You can also use `stat = "count"` in `geom_point()`. Build on the code above by adding a new layer of points using this method.
+
+```{r}
+"WRITE YOUR CODE HERE"
+ggplot(data = malidd,
+       mapping = aes(x = admit_date)) +
+  geom_line(stat = "count") +
+  geom_point(stat = "count")
 ```
 
 ## Customizing x-axis tick labels with `scale_x_date()`
 
-When you use variables of class "date" in `aes()`, the default tick labels on the axis may not be ideal. You can customize x-axis tick labels of the previous plot using `scale_x_date()`.
+When you use variables of class "date" in `aes()`, the default spacing of tick labels on the axis may not be ideal. In the case above, the x-axis adds a month name every 3 months.
 
-We can customize the frequency of date labels, just like we did with `scale_x_continuous()` in the prework. While `scale_x_continuous()` uses the `breaks` argument to specify a sequence of numbers, `scale_x_date()` uses an argument called `date_breaks`:
+You can customize the frequency of x-axis tick labels using a {ggplot2} function called **`scale_x_date()`** (or `scale_y_date()` for y-axis).
+
+We can customize the frequency of date labels, just like we did with `scale_x_continuous()` in the pre-work lesson. While `scale_x_continuous()` uses the `breaks` argument to specify a sequence of numbers, `scale_x_date()` uses an argument called **`date_breaks`**, like so:
 
 ```{r}
-# Example of scaling date axis using date_breaks
+# Example of scaling date axis using date_breaks in scale_x_date()
 ggplot(malidd, aes(x = admit_date)) +
   geom_line(stat = "count") +
-  scale_x_date(date_breaks = "3 months")
+  # add a new scales layer
+  scale_x_date(date_breaks = "2 months")
 ```
 
-This gives us a label every 3 months, instead of every 2 months like we had before. However, the date labels are now in YYYY-MM-DD format. We can customize how the dates are formatted, using the `date_labels` argument:
+This added x-axis labels every 2 months, instead of the 3 month intervals we had before. However, the date labels are now in YYYY-MM-DD format.
+
+We can customize how the dates are formatted, using the `date_labels` argument:
 
 ```{r}
 # Example of formatting date labels using date_labels
 ggplot(malidd, aes(x = admit_date)) +
   geom_line(stat = "count") +
   scale_x_date(date_breaks = "2 months", 
-               date_labels = "%B")
+               date_labels = "%B") # see detailed explanation below
 ```
 
 You may be wondering what `"%B"` means. When customizing date formats in {ggplot2}, we use specific codes to represent various components of a date.
 
 Here are some common codes that you can give to `date_labels`:
 
-![](images/date_codes_table.png)
+![These codes can also be combined - e.g., "%d %b"](images/date_codes_table.png)
 
-Change the axis ticks labels on the previous line graph to display abbreviated month names every 1 month.
+Change the axis ticks labels on the previous line graph to display **abbreviated month names** every **1 month**.
 
 ```{r}
 "WRITE YOUR CODE HERE"
 ```
 
-Further customize your plot to add color, labels, themes, and a layer of points. Adjust the size, shape, and transparency of points as you wish.
+Further customize your plot to add **color**, **labels**, and a layer of **points**. Adjust the size, shape, and transparency of points as you wish.
 
 ```{r}
-# Line graph with custom aesthetics
+# Line graph + scatterplot with customization
 "WRITE YOUR CODE HERE"
 ```
 
@@ -124,10 +164,10 @@ Bonus: You can also add a *themes* layer to your plot, using one the built-in `t
 
 # Comparing distributions with position adjustments
 
-Here's a histogram looking at the distribution of a numerical variable, `muac_cm`. MUAC stands for middle-upper arm circumference, and is measured in centimeters.
+Here's a **histogram** looking at the distribution of a numerical variable, **`muac_cm`**. MUAC stands for middle-upper arm circumference, and is measured in centimeters.
 
 ```{r}
-# Example simple histogram
+# Example simple histogram of children's MUAC
 ggplot(data =  malidd , 
        mapping = aes(x = muac_cm)) +
   geom_histogram()
@@ -136,27 +176,33 @@ ggplot(data =  malidd ,
 Build on this code to draw histogram of MUAC with black outline, white fill, and bin width of 0.5.
 
 ```{r}
+# Customize MUAC historgram (feel free to use other colors if desired)
 "WRITE YOUR CODE HERE"
 ```
 
-Now say we want to split each bar of the histogram by categorical variables in `malidd`, like `sex`.
+Now say we want to understand if there's a difference in size between male and female children. We can visualize this with a **stacked histogram** - this means we split each bar into **2 colors**, one for each sex.
 
-Plot a simple stacked histogram of MUAC and set the `fill` parameter to sex.
+Plot a stacked histogram of `muac_cm` colored by the `sex` variable in `malidd`.
 
 ```{r}
+# Set the fill aesthetic to sex.
 "WRITE YOUR CODE HERE"
+
+# WATCH OUT: make sure you are adding fill to the correct place in your ggplot code. Think about the difference between a fixed aesthetic and a mapping aesthetic.
 ```
 
 ### Position adjustments
 
 After setting fill color, you can change the position adjustment within `geom_histogram()`.
 
+![](images/gg_min_build_positions.png){width="617"}
+
 Possible values for the argument **position** in `geom_histogram()` are `“identity”`, `“stack”`, `“dodge”`. Default value is `“stack”`.
 
 Setting position to `“stack”` will give you the same plot as above.
 
 ```{r}
-# stack: stacked distributions of a categorical variable  
+# position stack: stacked distributions of a categorical variable  
 ggplot(data =  malidd , 
        mapping = aes(x = muac_cm, 
                      fill = sex,
@@ -168,18 +214,20 @@ ggplot(data =  malidd ,
 
 Use the `position` argument in `geom_histogram()` to create the following:
 
--   Histogram of height with overlapping bars
+-   Histogram of *height* with overlapping bars
 
 ```{r}
-# identity: draw overlapping distributions on the same plot
+# position identity: draw overlapping distributions on the same plot
 
 "WRITE YOUR CODE HERE"
+
+# BONUS TIP: Replace `geom_histogram()` with `geom_density()` for a nicer looking plot.
 ```
 
--   Histogram of weight with dodged bars
+-   Histogram of *body temperature* with dodged bars
 
 ```{r}
-# dodge: interweave distributions on the same plot
+# position dodge: interweave distributions on the same plot
 
 "WRITE YOUR CODE HERE"
 ```
@@ -188,7 +236,7 @@ Use the `position` argument in `geom_histogram()` to create the following:
 
 Now we will apply position adjustments with a new categorical variable.
 
-We'll first create a new categorical variable called **`age_group`**.
+We'll first create a categorical variable called **`age_group`**.
 
 ```{r}
 # Create new variable with 3 age groups
@@ -199,14 +247,23 @@ malidd <- malidd %>%
     age_months > 12 & age_months <= 48 ~ 'toddler'))
 ```
 
-Use {dplyr} functions to change `age_group` to factor, and relevel the factor to go from youngest age group to oldest age group.
+The newly added variable is of class "character".
+
+```{r}
+# Check class
+malidd$age_group %>% class()
+```
+
+Use the correct {dplyr} functions to change the `age_group` to **factor**, and edit the **`levels`** of the factor to go from youngest age group to oldest age group.
 
 ```{r}
 # Mutate to factor and reorder levels
 "WRITE YOUR CODE HERE"
 ```
 
-Set `fill` to age group, and compare distributions between age groups using `position` arguments. You can use any numeric variables from the `malidd` data frame as the `x` aesthetic for your histogram.
+Now you can create histograms to compare newborns, infants, and toddlers.
+
+Set `fill` to `age_group` and `x` to a continuous variable from `malidd`, such as `height`, `temp`, `freqrespi`, etc. Use different `position` arguments for stacked, dodged, or overlapping bars.
 
 Try to come up with 3 different histograms.
 
@@ -229,10 +286,17 @@ Try to come up with 3 different histograms.
 
 Did you know that `scale_*()` functions are also used to customize the color palettes of {ggplot2} graphs?
 
-Do some research on the {paletteer} package, and how it interfaces with `scale_*()` functions in {ggplot2}.
+One package with beautiful color palettes is {paletteer}.
 
-Here are some palettes to explore:
+```{r}
+# Install and load paletteer
 
--   <https://rpubs.com/kenwosu/653735>
+```
 
--   <https://emilhvitfeldt.github.io/paletteer/index.html>
+Do some online research on the how {paletteer} works, and how it interfaces with `scale_*_()` functions in {ggplot2}.
+
+Here are some links to explore:
+
+-   [{paletteer} package documentation](https://emilhvitfeldt.github.io/paletteer/index.html). See the section on {ggplot2} scales for example code using the `scale_color_paletteer_d()` function. Apply this function to your age group histograms, and try different palettes.
+
+-   There are a large number of palette names that you can use with `scale_color_paletteer_d()` or `scale_fill_paletteer_d()`. We have visualized them [here](), so that you can browse though the colors and choose palettes that look nice to you :)
