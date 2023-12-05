@@ -22,25 +22,25 @@ The Demographic and Health Surveys (DHS) are a series of standardized surveys co
 
 Several DHS datasets (called recodes) are made available from each survey. The ***individual recode (IR)*** dataset contains individual-level data on women aged 15 to 49 in the surveyed households. This is what you will use for this workshop and for your final projects.
 
-Today we will be looking at women's individual recode data from **Nigeria (2018)**. Key findings from this data can be found in this [report](https://drive.google.com/file/d/10pp9O9EJZvideynYyANqJtBCsN_vNQjs/view). 
- 
+Today we will be looking at **women's individual recode** data from **Nigeria (2018)**. Key findings from this data can be found in this [report](https://drive.google.com/file/d/10pp9O9EJZvideynYyANqJtBCsN_vNQjs/view).
+
 ## Import dataset with `{haven}` functions
- 
+
 DHS data comes in the form of a **.DTA file** (STATA format). To import the DHS dataset from the .DTA format into R, you should use the `read_dta()` function from the {haven} package. Let's load the needed packages.
 
 ```{r}
 # Load packages
 pacman::p_load(
   janitor, # data analysis utilities
-  here, # force rmds to use the project folder as working directory
+  here, # to use the project folder as working directory
   haven, # for reading in stata files
   tidyverse # for everything!
 )
 ```
 
-Before importing the data, we must select which column to include. This is not how we usually do it, but in this case we have a good reason. 
+Before importing the data, we must select which column to include. This is not how we usually do it, but in this case we have a good reason.
 
-DHS files can be quite large -- the Nigeria 2018 data has over 40,000 rows and 5,000 columns. When datasets are that large, you need to avoid importing the entire dataset at once, as this may take unreasonably long to run and may cause R to freeze. Instead, you can import only a subset of the data containing the variables you want to analyze. 
+DHS files can be quite large -- the Nigeria 2018 data has over 40,000 rows and 5,000 columns. When datasets are that large, you need to avoid importing the entire dataset at once, as this may take unreasonably long to run and may cause R to freeze. Instead, you can import only a subset of the data containing the variables you want to analyze.
 
 If you look in your "data" folder of this workshop, you will see a file named *NGIR7BFL_mini.DTA*, which contains the IR data we want to use. Consult the data dictionary (NGIR7BFL_data_dictionary.pdf) in the "data" folder to choose variables based on their descriptions.
 
@@ -118,13 +118,16 @@ glimpse(ir_clean)
 ## Comparing distributions with boxplots and barplots
 
 Last week we looked at distributions of continuous variables using histograms. For example, here's a histogram of age at first birth:
+
 ```{r}
 # Histogram of age at first birth
  ggplot(data = ir_clean,
    mapping = aes(x = age_first_birth)) +
    geom_histogram()
 ```
-If we want to look at how this differs between women in urban and rural areas, we could create a histogram like this: 
+
+If we want to look at how this differs between women in urban and rural areas, we could create a histogram like this:
+
 ```{r}
 # Histogram of age at first birth
  ggplot(data = ir_clean,
@@ -135,7 +138,9 @@ If we want to look at how this differs between women in urban and rural areas, w
      position = "dodge") +
    theme_classic()
 ```
-However, histograms are best used for continuous data. If we want to compare age at first birth between two CATEGORIES, we should use a plot better suited to categorical data - boxplots. 
+
+However, histograms are best used for continuous data. If we want to compare age at first birth between two CATEGORIES, we should use a plot better suited to categorical data - boxplots.
+
 ```{r}
 # Boxplot of age at first birth
 
@@ -147,7 +152,8 @@ However, histograms are best used for continuous data. If we want to compare age
    theme_classic()
 ```
 
-With boxplots, we can even take it a step further and split it by a second categorical variable. 
+With boxplots, we can even take it a step further and split it by a second categorical variable.
+
 ```{r}
 ggplot(data = ir_clean,
    mapping = aes(x = highest_educ, 
@@ -169,7 +175,6 @@ ggplot(data = ir_clean,
   theme_bw()
 ```
 
-
 ```{r}
 # Percent stacked bar plot of education
 ggplot(data = ir_clean,
@@ -179,12 +184,13 @@ ggplot(data = ir_clean,
   geom_bar(position = "fill") +
   theme_bw()
 ```
+
 ```{r}
 # Grouped bar plot of education
 ggplot(data = ir_clean,
   mapping = aes(
     x = highest_educ,
     fill = urban_rural)) +
-  geom_bar(position = "fill") +
+  geom_bar(position = "dodge") +
   theme_bw()
 ```
