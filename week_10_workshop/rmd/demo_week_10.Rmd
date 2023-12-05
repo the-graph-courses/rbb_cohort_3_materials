@@ -1,0 +1,190 @@
+---
+title: "Week 10: Exploring DHS data with ggplot2"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+author: "GRAPH Courses Team"
+date: "2023-09-12"
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r echo = F}
+knitr::opts_chunk$set(warning = F, message = F)
+```
+
+## Demographic and Health Survey (DHS) data
+
+The Demographic and Health Surveys (DHS) are a series of standardized surveys conducted periodically in developing countries that collect data on various aspects of population, health, and nutrition. You will be using DHS data for the final project of this course, so this is a chance to practice working with this type of data.
+
+## Nigeria Women's individual recode, 2018
+
+Several DHS datasets (called recodes) are made available from each survey. The ***individual recode (IR)*** dataset contains individual-level data on women aged 15 to 49 in the surveyed households. This is what you will use for this workshop and for your final projects.
+
+Today we will be looking at women's individual recode data from **Nigeria (2018)**. Key findings from this data can be found in this [report](https://drive.google.com/file/d/10pp9O9EJZvideynYyANqJtBCsN_vNQjs/view). 
+ 
+## Import dataset with `{haven}` functions
+ 
+DHS data comes in the form of a **.DTA file** (STATA format). To import the DHS dataset from the .DTA format into R, you should use the `read_dta()` function from the {haven} package. Let's load the needed packages.
+
+```{r}
+# Load packages
+pacman::p_load(
+  janitor, # data analysis utilities
+  here, # force rmds to use the project folder as working directory
+  haven, # for reading in stata files
+  tidyverse # for everything!
+)
+```
+
+Before importing the data, we must select which column to include. This is not how we usually do it, but in this case we have a good reason. 
+
+DHS files can be quite large -- the Nigeria 2018 data has over 40,000 rows and 5,000 columns. When datasets are that large, you need to avoid importing the entire dataset at once, as this may take unreasonably long to run and may cause R to freeze. Instead, you can import only a subset of the data containing the variables you want to analyze. 
+
+If you look in your "data" folder of this workshop, you will see a file named *NGIR7BFL_mini.DTA*, which contains the IR data we want to use. Consult the data dictionary (NGIR7BFL_data_dictionary.pdf) in the "data" folder to choose variables based on their descriptions.
+
+IMPORTANT: The data dictionary lists column names in all caps, but they are lowercase in the actually file. Remember to change letters to *lowercase*.
+
+Use the `col_select` argument of `read_dta()` to specify which columns to import. For this demo, we will select basic demographic variables (age, location, education, etc.) and a few additional variables related to fertility and reproductive timing among women in Nigeria.
+
+```{r}
+# Reading in the .dta file
+ir_raw <- 
+  haven::read_dta(here("data/NGIR7BFL_mini.DTA"),
+                  col_select = c(
+                    # basic information
+                    v006, v007, v009, v010, v012, v013, 
+                    v024, v025, v106, v130, v190,   
+                    # fertility and reproductive timing
+                    v201, v212, v213, v511, v531))
+
+# Note - For this workshop, we created a mini version that has only 1000 rows, but in your actual final project you will be expected to work with all rows.
+```
+
+Since the DHS variable names are not very descriptive (like v000 and v001), we will use `rename()` to give them short, descriptive titles.
+
+```{r}
+# Renaming the variables
+ir_renamed <- 
+  ir_raw %>% 
+  rename(mth_interview = v006,
+         yr_interview = v007,
+         mth_birth = v009,
+         yr_birth = v010,
+         age = v012,
+         age_group = v013,
+         region = v024,
+         urban_rural = v025,
+         highest_educ = v106,
+         religion = v130,
+         wealth_index = v190,
+         num_kids = v201,
+         age_first_birth = v212,
+         curr_pregnant = v213,
+         age_first_cohabitation = v511,
+         age_first_sex = v531)
+```
+
+Another note on importing data: the **`read_dta()`** function reads in factor data as a special data type called **labelled** data.
+
+```{r}
+# Review data types
+glimpse(ir_renamed)
+```
+
+Several variables are of class "`dbl+lbl`". This mean the columns display only numbers, and each number corresponds to a survey answer.
+
+This is cryptic and can be problematic for later analysis, so we recommend converting these to regular R factors using the function `haven::as_factor()`. This will replace the numbers with the corresponding text label.
+
+For example:
+
+```{r}
+# convert from labelled data to regular factors
+ir_clean <- 
+  ir_renamed %>% 
+  haven::as_factor()
+```
+
+**NOTE**: There is another function called `as_factor()` from the {forcats} package, and one called `as.factor()` from {base} R. Remember to add "`haven::`" before `as_factor()` to make sure you're using the correct one for .dta files.
+
+Now you can see that the variables that were previously "`dbl+lbl`" are now "`fct`" (factor) and the numbers are replaced with descriptive text.
+
+```{r}
+# Review data types
+glimpse(ir_clean)
+```
+
+## Comparing distributions with boxplots and barplots
+
+Last week we looked at distributions of continuous variables using histograms. For example, here's a histogram of age at first birth:
+```{r}
+# Histogram of age at first birth
+ ggplot(data = ir_clean,
+   mapping = aes(x = age_first_birth)) +
+   geom_histogram()
+```
+If we want to look at how this differs between women in urban and rural areas, we could create a histogram like this: 
+```{r}
+# Histogram of age at first birth
+ ggplot(data = ir_clean,
+   mapping = aes(x = age_first_birth, 
+                 fill = urban_rural)) +
+   geom_histogram(bins = 25, 
+     color = "white",
+     position = "dodge") +
+   theme_classic()
+```
+However, histograms are best used for continuous data. If we want to compare age at first birth between two CATEGORIES, we should use a plot better suited to categorical data - boxplots. 
+```{r}
+# Boxplot of age at first birth
+
+ ggplot(data = ir_clean,
+   mapping = aes(x = urban_rural, 
+                 y = age_first_birth, 
+                 fill = urban_rural)) +
+   geom_boxplot() +
+   theme_classic()
+```
+
+With boxplots, we can even take it a step further and split it by a second categorical variable. 
+```{r}
+ggplot(data = ir_clean,
+   mapping = aes(x = highest_educ, 
+                 y = age_first_birth, 
+                 fill = urban_rural)) +
+   geom_boxplot() +
+   theme_classic()
+```
+
+Bar plots can also be used to compare distributions, but for categorical variables.
+
+```{r}
+# Stacked bar plot of education
+ggplot(data = ir_clean,
+  mapping = aes(
+    x = highest_educ,
+    fill = urban_rural)) +
+  geom_bar() +
+  theme_bw()
+```
+
+
+```{r}
+# Percent stacked bar plot of education
+ggplot(data = ir_clean,
+  mapping = aes(
+    x = highest_educ,
+    fill = urban_rural)) +
+  geom_bar(position = "fill") +
+  theme_bw()
+```
+```{r}
+# Grouped bar plot of education
+ggplot(data = ir_clean,
+  mapping = aes(
+    x = highest_educ,
+    fill = urban_rural)) +
+  geom_bar(position = "fill") +
+  theme_bw()
+```

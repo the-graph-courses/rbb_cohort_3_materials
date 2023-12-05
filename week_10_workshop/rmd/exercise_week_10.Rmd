@@ -1,0 +1,188 @@
+---
+title: "Week 10: Exploring DHS data with ggplot2"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+author: "YOUR NAME HERE"
+date: "2023-12-05"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+# Load necessary packages
+```{r}
+pacman::p_load(
+  janitor,    # for data analysis utilities
+  here,       # to set the working directory
+  haven,      # for reading Stata files
+  tidyverse   # for data manipulation and visualization
+)
+```
+
+*NOTE: Please read through and run the code in the demo Rmd BEFORE starting this exercise.*
+
+# Data Importation and cleaning
+
+## Step 1: Choose and import select columns
+
+The code chunk below imports the same variables as presented in the demo. However, we want to augment this by adding five variables related to malaria-knowledge.
+
+Scan through the data dictionary file and determine which five variables correspond to the following agreement statements:
+
+-   Malaria can be fully cured by medicine
+-   Malaria can lead to death
+-   No worry about malaria due to easy treatment
+-   Know people sick with malaria
+-   Only weak children can die from malaria
+
+Then, incorporate these variables into the data import code below. 
+
+HINT - these variables can be found on pages 225-226 of the data dictionary PDF.
+
+**Note**: make sure ALL letters in the variable names are in lower case. If the data dictionary says "S1108BA" you should change the 3 letters to lowercase like this: "s1108ba" when you enter it in `col_select`.
+
+```{r}
+# Import the .dta file and add the 5 malaria knowledge variables
+ir_ng_18_raw <- 
+  haven::read_dta(here("data/NGIR7BFL_mini.DTA"),
+                  col_select = c(
+                    # Basic information
+                    v006, v007, v009, v010, v012, v013, 
+                    v024, v025, v106, v130, v190,                     
+                    
+                    # Literacy and media
+                    v155, v156, v157, v158, v159, 
+                    
+                    # Fertility and reproductive timing
+                    v201, v212, v213, v511, v531, 
+                    
+                    "WRITE YOUR CODE HERE" 
+                    
+                    ))
+```
+
+
+## Step 2: Assign variable names
+
+Assign descriptive names to the newly imported variables and then execute the code below.
+
+```{r}
+# Rename malaria knowledge variables
+ir_ng_18_renamed <- 
+  ir_ng_18_raw %>% 
+  rename(age = v012,
+         age_group = v013,
+         region = v024,
+         urban_rural = v025,
+         highest_educ = v106,
+         religion = v130,
+         literacy = v155,
+         wealth_index = v190,
+         num_kids = v201,
+         age_first_birth = v212,
+         age_first_cohabitation = v511,
+         age_first_sex = v531, 
+         "WRITE YOUR CODE HERE" 
+         )
+```
+
+## Step 3: Reveal coded values
+
+With the suitable function from the `haven` package, transform all variables into regular R factors.
+
+```{r}
+# Add function to convert from labelled data to regular factors
+ir_ng_18_clean <- 
+  ir_ng_18_renamed %>% 
+  "WRITE YOUR CODE HERE"
+```
+
+# Comparing distributions
+
+## Histograms, boxplots, and bar plots for continuous distributions
+
+a.  Choose one of the continuous variables from the dataset: `age`, `num_kids`, `age_first_sex`, `age_first_cohabitation` or `age_first_birth.` Then, generate a simple histogram of this variable. Make sure to provide the necessary labels.
+
+```{r}
+# Simple histogram
+"WRITE YOUR CODE HERE"
+```
+
+b.  Now, incorporate the `fill` aesthetic to color the bars of your histogram by levels of a categorical variable. Map one of the new malaria knowledge variables to fill - `aes(..., fill = MALARIA_VAR)`, and use `position` adjustments to create a side-by-side (dodged) histogram. This graph should show how the responses to this question differ at the various levels of the chosen continuous variable.
+
+```{r}
+# Histogram with position argument
+"WRITE YOUR CODE HERE"
+```
+
+c. The method above isn't ideal. Visualize the same comparison with a boxplot instead of a histogram. Adjust the colors, labels, titles, themes, etc. as you please.
+
+```{r}
+# Boxplot comparing groups
+"WRITE YOUR CODE HERE"
+```
+
+## Barplots for discrete distributions 
+
+a.  Select one of the categorical variables from the dataset. Proceed to generate a simple bar plot to display the distribution of this variable. 
+
+```{r}
+# Simple bar plot
+"WRITE YOUR CODE HERE"
+```
+
+
+b.  Next, add the `fill` aesthetic, `aes(fill = CATEGORICAL_VAR)`, with `position` adjustments to generate a PERCENT-STACKED bar plot. This graph should illustrate how the answers to the malaria knowledge question change at the different levels of the chosen categorical variable.
+
+```{r}
+# Percent stacked bar plot
+"WRITE YOUR CODE HERE"
+```
+
+c. Choose two OTHER categorical variables and created a GROUPED bar chart. Adjust the colors, labels, titles, themes, etc. as you please.
+
+```{r}
+# Grouped bar chart
+"WRITE YOUR CODE HERE"
+```
+
+
+# Bonus challenge
+
+Pick one of the plots from above to customize further, then implement the below customizations.
+
+## Facets 
+
+Another way of comparing distributions by levels of a categorical variable is **faceting**. For example:
+
+```{r} 
+ggplot(data = mtcars, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(~cyl)
+```
+
+Implement something similar in your plots, faceting by a selected categorical variable.
+
+
+## Custom color scales
+
+Rather than just let {ggplot2} pick your fill colors for you, you can implement a custom palette using `scale_color_manual()` (or `scale_fill_manual()`) and the `values` argument. 
+
+To generate a custom palette, go to https://mycolor.space and enter this hex code, which is the GRAPH Network's log color: `#6DA5AF`. Then generate a suitable palette based on this color. 
+
+Copy the hex codes and use them in the `scale_color_manual()` function as done in the example below:
+
+```{r}
+# Scatterplot with custom colors
+ggplot(data = mtcars, aes(x = mpg, y = disp, color = factor(cyl))) +
+  geom_point() +
+  scale_color_manual(values = c("#4C5B5C", "#6B8E7A", "#EFF2A9")) +
+  facet_wrap(~cyl) +
+  theme_light()
+```
+
