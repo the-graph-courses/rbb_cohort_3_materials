@@ -180,7 +180,7 @@ ggplot(data = ir_clean,
 ggplot(data = ir_clean,
   mapping = aes(
     x = highest_educ,
-    fill = urban_rural)) +
+    fill = wealth_index)) +
   geom_bar(position = "fill") +
   theme_bw()
 ```
@@ -190,7 +190,7 @@ ggplot(data = ir_clean,
 ggplot(data = ir_clean,
   mapping = aes(
     x = highest_educ,
-    fill = urban_rural)) +
+    fill = wealth_index)) +
   geom_bar(position = "dodge") +
   theme_bw()
 ```

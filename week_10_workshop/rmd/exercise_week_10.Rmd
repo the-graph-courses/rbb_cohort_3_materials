@@ -137,7 +137,7 @@ a.  Select one of the categorical variables from the dataset. Proceed to generat
 ```
 
 
-b.  Next, add the `fill` aesthetic, `aes(fill = CATEGORICAL_VAR)`, with `position` adjustments to generate a PERCENT-STACKED bar plot. This graph should illustrate how the answers to the malaria knowledge question change at the different levels of the chosen categorical variable.
+b.  Next, add the `fill` aesthetic, `aes(fill = MALARIA_VAR)`, with `position` adjustments to generate a PERCENT-STACKED bar plot. This graph should illustrate how the answers to the malaria knowledge question change at the different levels of the chosen categorical variable.
 
 ```{r}
 # Percent stacked bar plot
